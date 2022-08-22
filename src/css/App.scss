@@ -1,0 +1,56 @@
+@use "./shared/colors";
+
+* {
+  // outline: orangered solid;
+  color: colors.$text;
+  box-sizing: border-box;
+}
+.wrap {
+  margin: 0 10%;
+}
+.navbar {
+  background-color: colors.$primary;
+  a {
+    text-decoration: none;
+  }
+  .logo {
+    height: 2rem;
+    margin-right: 1rem;
+  }
+  h1 {
+    flex-shrink: 0;
+  }
+  ul {
+    flex-grow: 1;
+    list-style: none;
+    margin: 0;
+    a {
+      display: inline-block;
+      padding: 1rem;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s;
+      &:hover,
+      &:active {
+        border-color: colors.$border;
+      }
+    }
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.align-center {
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .wrap {
+    margin: 0 10px;
+  }
+}
