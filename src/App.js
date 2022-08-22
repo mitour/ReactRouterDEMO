@@ -5,6 +5,9 @@ import "./css/App.scss";
 import Home from "./components/Home";
 import About from "./components/About";
 import FAQ from "./components/FAQ";
+import Tour from "./components/Tour";
+import TourList from "./components/TourList";
+import TourDetails from "./components/TourDetails";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
             <li>
               <Link to="faq">常見問答</Link>
             </li>
+            <li>
+              <Link to="tour">旅遊景點</Link>
+            </li>
           </ul>
         </nav>
       </header>
@@ -33,6 +39,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="faq" element={<FAQ />} />
+          <Route path="tour" element={<Tour />}>
+            <Route index element={<TourList />} />
+            <Route path=":id" element={<TourDetails />} />
+          </Route>
         </Routes>
       </main>
     </>
