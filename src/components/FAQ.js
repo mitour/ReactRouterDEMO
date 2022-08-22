@@ -1,15 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function FAQ() {
+  const navigate = useNavigate();
   return (
     <>
       <main>
-        <h2>Welcome to the homepage!</h2>
-        <p>You can do this, I believe in you.</p>
+        <h2>LOL! Nothing here.</h2>
       </main>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
+      <button onClick={() => navigate(-1)}>Go back</button>
     </>
   );
 }
