@@ -18,19 +18,37 @@ function TourList() {
       {!data.length ? (
         <Loading />
       ) : (
-        <ul>
-          {data.map((item) => {
-            return (
-              <>
-                <li key={item.id}>
-                  <NavLink to={item.Name} state={item}>
-                    {item.Name}
-                  </NavLink>
-                </li>
-              </>
-            );
-          })}
-        </ul>
+        <main>
+          <ul>
+            {data.map((item) => {
+              return (
+                <>
+                  <li key={item.id}>
+                    <NavLink to={item.Name} state={item}>
+                      {item.Name}
+                    </NavLink>
+                  </li>
+                </>
+              );
+            })}
+          </ul>
+          <nav className="pagination">
+            <ul className="d-flex flex-end">
+              <li key={1}>
+                <input className="active" type="button" value="1" />
+              </li>
+              <li key={2}>
+                <input className="" type="button" value="2" />
+              </li>
+              <li key={3}>
+                <input className="" type="button" value="3" />
+              </li>
+              <li key={4}>
+                <input className="" type="button" value="4" />
+              </li>
+            </ul>
+          </nav>
+        </main>
       )}
     </>
   );

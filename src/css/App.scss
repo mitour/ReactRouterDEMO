@@ -54,3 +54,32 @@
     margin: 0 10px;
   }
 }
+
+.pagination {
+  ul {
+    margin: 1rem 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    input {
+      min-width: 40px;
+      min-height: 40px;
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 0.5rem;
+      &:hover:not(.active) {
+        opacity: 50%;
+        color: #fff;
+        background-color: colors.$border;
+      }
+      &.active {
+        color: #fff;
+        background-color: colors.$border;
+      }
+    }
+  }
+}
