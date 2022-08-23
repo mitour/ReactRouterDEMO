@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Loading from "./Loading";
 
 function TourList() {
   const [data, setData] = useState([]);
@@ -14,19 +15,23 @@ function TourList() {
   }, []);
   return (
     <>
-      <ul>
-        {data.map((item) => {
-          return (
-            <>
-              <li key={item.id}>
-                <NavLink to={item.Name} state={item}>
-                  {item.Name}
-                </NavLink>
-              </li>
-            </>
-          );
-        })}
-      </ul>
+      {!data.length ? (
+        <Loading />
+      ) : (
+        <ul>
+          {data.map((item) => {
+            return (
+              <>
+                <li key={item.id}>
+                  <NavLink to={item.Name} state={item}>
+                    {item.Name}
+                  </NavLink>
+                </li>
+              </>
+            );
+          })}
+        </ul>
+      )}
     </>
   );
 }
