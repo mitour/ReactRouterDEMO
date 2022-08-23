@@ -4,6 +4,13 @@ import Loading from "./Loading";
 
 function TourList() {
   const [data, setData] = useState([]);
+  const [partData, setPartData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState([]);
+
+  const handleClick = (page) => {
+    setCurrentPage(page);
+  };
   useEffect(() => {
     (async function fetchData() {
       const data = await fetch(
@@ -13,6 +20,10 @@ function TourList() {
       setData(jsonData.data.XML_Head.Infos.Info);
     })();
   }, []);
+  useEffect(() => {
+    setPartData(data.slice(currentPage * 20, currentPage * 20 + 20));
+    setPageCount([...Array(Math.floor(data.length / 20)).keys()]);
+  }, [data, currentPage]);
   return (
     <>
       {!data.length ? (
@@ -20,32 +31,31 @@ function TourList() {
       ) : (
         <main>
           <ul>
-            {data.map((item) => {
+            {partData.map((item) => {
               return (
-                <>
-                  <li key={item.id}>
-                    <NavLink to={item.Name} state={item}>
-                      {item.Name}
-                    </NavLink>
-                  </li>
-                </>
+                <li key={item.id}>
+                  <NavLink to={item.Name} state={item}>
+                    {item.Name}
+                  </NavLink>
+                </li>
               );
             })}
           </ul>
           <nav className="pagination">
             <ul className="d-flex flex-end">
-              <li key={1}>
-                <input className="active" type="button" value="1" />
-              </li>
-              <li key={2}>
-                <input className="" type="button" value="2" />
-              </li>
-              <li key={3}>
-                <input className="" type="button" value="3" />
-              </li>
-              <li key={4}>
-                <input className="" type="button" value="4" />
-              </li>
+              {pageCount.map((page) => {
+                page++;
+                return (
+                  <li key={page}>
+                    <input
+                      className={page === currentPage ? "active" : ""}
+                      type="button"
+                      value={page}
+                      onClick={() => handleClick(page)}
+                    />
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </main>
